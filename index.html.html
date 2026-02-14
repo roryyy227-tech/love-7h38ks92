@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>Be My Valentine 💘</title>
+<style>
+body {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    overflow: hidden;
+    position: relative;
+}
+
+h1 {
+    margin-top: 80px;
+    font-size: 42px;
+    color: white;
+}
+
+.buttons {
+    margin-top: 40px;
+    position: relative;
+    height: 200px;
+}
+
+button {
+    padding: 15px 35px;
+    font-size: 20px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    position: absolute;
+    transition: 0.3s;
+}
+
+#yes {
+    background-color: #ff4d6d;
+    color: white;
+    left: 40%;
+}
+
+#no {
+    background-color: white;
+    color: #ff4d6d;
+    left: 55%;
+}
+
+#message {
+    display: none;
+    margin-top: 60px;
+    font-size: 22px;
+    color: white;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.5;
+}
+
+/* تصميم القلوب المتحركة */
+.heart {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: red;
+    transform: rotate(-45deg);
+    animation: float 6s linear infinite;
+}
+
+.heart:before,
+.heart:after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: red;
+    border-radius: 50%;
+}
+
+.heart:before {
+    top: -10px;
+    left: 0;
+}
+
+.heart:after {
+    left: 10px;
+    top: 0;
+}
+
+@keyframes float {
+    0% { transform: translateY(0) rotate(-45deg); opacity:1; }
+    100% { transform: translateY(-800px) rotate(-45deg); opacity:0; }
+}
+</style>
+</head>
+<body>
+
+<h1>Will you be my Valentine? 💘</h1>
+
+<div class="buttons">
+    <button id="yes">Yes 😍</button>
+    <button id="no">No 🙃</button>
+</div>
+
+<div id="message">
+💖 حبيبتي 💖<br><br>
+كل يوم اقضيه معاك احس قلبي يطير من الفرحه , و روحي مرتاحه وكل شيء مرتاح وانا معاك , من يوم عرفتك وانا حاسه ان حياتي تغيرت للأحلى كل ضحكه منك , كل لمسه , كل كلمة منك بتخليني ابتسم بدون سبب , في يوم الفالنتاين هذا حابه اقولك انتِ السبب في كل لحظة سعيدة في حياتي , وفي كل حب جوا قلبي ,<br>
+السنه الي عدت مع بعض كانت مليانه لحظات جميلة ضحكنا وحبينا وشاركنا كل شيء سوا وكل يوم بيعدي احس ان حبي لك يكبر ويكبر , أحبك واحب كل شيء فيك , ضحكتك , ابتسامتك , ووجهك , وحنيتك عليا , ودلعك ليا وكمان احب حبات خالك بشكل م تتخيليه , واحب كل تفاصيلك الصغيرة والكبيرة ,<br>
+شكراً لأنك موجودة بحياتي وشكراً لأنك بتخليني احس اني اسعد انسانه بالعالم , واوعدك اني ببقى أحبك واضحك معاك واشاركك كل لحظة حلوة واكون جنبك دايماً مهما حصل , أحبك اكثر مما الكلمات تقدر توصف وان شاءالله نبقى سوا دايمًا ونعيش كل لحظة بحب كبير , أحبك يا حبيبتي ❤️<br><br>
+ اسمعي الأغنية: 
+<a href="https://youtu.be/V78Q20X4B6w" target="_blank" style="color:yellow;">Click to play</a>
+</div>
+
+<audio id="romanticSong">
+    <source src="athousandyears.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const noBtn = document.getElementById("no");
+const yesBtn = document.getElementById("yes");
+const message = document.getElementById("message");
+
+let yesSize = 1;
+let noSize = 1;
+
+// لما تضغط No يصغر ويكبر Yes
+noBtn.addEventListener("click", function() {
+    noSize -= 0.1;
+    yesSize += 0.1;
+
+    if (noSize <= 0.2) {
+        noBtn.style.display = "none";
+    }
+
+    noBtn.style.transform = `scale(${noSize})`;
+    yesBtn.style.transform = `scale(${yesSize})`;
+});
+
+// زر Yes
+yesBtn.addEventListener("click", function() {
+    document.querySelector(".buttons").style.display = "none";
+    message.style.display = "block";
+
+    const song = document.getElementById("romanticSong");
+    song.play();
+});
+
+// قلوب متحركة
+function createHeart() {
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.style.left = Math.random() * window.innerWidth + 'px';
+    heart.style.width = 10 + Math.random() * 20 + 'px';
+    heart.style.height = heart.style.width;
+    heart.style.animationDuration = 4 + Math.random() * 3 + 's';
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 7000);
+}
+setInterval(createHeart, 500);
+</script>
+
+</body>
+</html>
